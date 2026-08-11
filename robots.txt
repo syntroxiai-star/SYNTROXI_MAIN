@@ -1,0 +1,31 @@
+User-agent: Googlebot
+Allow: /
+Disallow: /auth/
+Disallow: /checkout/
+Disallow: /dashboard/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /auth/
+Disallow: /checkout/
+Disallow: /dashboard/
+
+User-agent: Twitterbot
+Allow: /
+Disallow: /auth/
+Disallow: /checkout/
+Disallow: /dashboard/
+
+User-agent: facebookexternalhit
+Allow: /
+Disallow: /auth/
+Disallow: /checkout/
+Disallow: /dashboard/
+
+User-agent: *
+Allow: /
+Disallow: /auth/
+Disallow: /checkout/
+Disallow: /dashboard/
+
+Sitemap: https://syntroxi.com/sitemap.xml
