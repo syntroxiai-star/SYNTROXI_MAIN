@@ -2,5 +2,8 @@
   "version": 2,
   "buildCommand": "npm run build",
   "outputDirectory": "dist/client",
-  "routes": [{ "src": "/(.*)", "dest": "/api" }]
+  "routes": [
+    { "src": "/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "/(.*)", "dest": "/api" }
+  ]
 }
