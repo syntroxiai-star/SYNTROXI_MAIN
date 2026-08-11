@@ -1,4 +1,4 @@
-import { readFile, readdir, writeFile } from "node:fs/promises";
+import { mkdir, readdir, readFile, rm, stat, writeFile, copyFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -7,7 +7,8 @@ const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, "..");
 const sourceHtmlPath = path.join(rootDir, "index.html");
 const distDir = path.join(rootDir, "dist", "client");
-const targetHtmlPath = path.join(distDir, "index.html");
+const distIndexPath = path.join(distDir, "index.html");
+const rootAssetsDir = path.join(rootDir, "assets");
 
 const template = await readFile(sourceHtmlPath, "utf8");
 let assetFiles = [];
@@ -31,6 +32,22 @@ if (entryAsset) {
 }
 
 const htmlWithAssets = template.replace("</body>", `${injectTag.join("\n")}\n</body>`);
-await writeFile(targetHtmlPath, htmlWithAssets);
+await writeFile(distIndexPath, htmlWithAssets);
 
-console.log(`Built Vercel entry at ${path.relative(rootDir, targetHtmlPath)} with ${entryAsset ?? "no entry asset"}`);
+await rm(rootAssetsDir, { recursive: true, force: true });
+await mkdir(rootAssetsDir, { recursive: true });
+for (const entry of await readdir(path.join(distDir, "assets"))) {
+  await copyFile(path.join(distDir, "assets", entry), path.join(rootAssetsDir, entry));
+}
+for (const file of ["favicon.png", "logo.svg", "og-image.png", "robots.txt", "sitemap.xml", "certificate.jpeg"]) {
+  const sourcePath = path.join(distDir, file);
+  try {
+    await stat(sourcePath);
+    await copyFile(sourcePath, path.join(rootDir, file));
+  } catch {
+    // Ignore missing optional files.
+  }
+}
+await copyFile(distIndexPath, path.join(rootDir, "index.html"));
+
+console.log(`Published Vercel entry at ${path.relative(rootDir, distIndexPath)} and copied assets to ${path.relative(rootDir, rootAssetsDir)} with ${entryAsset ?? "no entry asset"}`);
