@@ -1,0 +1,1 @@
+import{F as e,R as t,c as n,o as r,s as i}from"./utils-BuNNlq-7.js";var a=t(e(),1);function o(){!i.current&&r();let[e]=(0,a.useState)(n.current);return e}export{o as t};
