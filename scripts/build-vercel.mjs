@@ -12,6 +12,9 @@ const publicAssetsDir = path.join(publicDir, "assets");
 const publicIndexPath = path.join(publicDir, "index.html");
 
 const template = await readFile(sourceHtmlPath, "utf8");
+const templateWithoutGeneratedAssets = template
+  .replace(/<link rel="stylesheet" href="\/assets\/[^\"]+">/g, "")
+  .replace(/<script type="module" src="\/assets\/[^\"]+"><\/script>/g, "");
 let assetFiles = [];
 try {
   assetFiles = (await readdir(path.join(distDir, "assets"))).filter((file) =>
@@ -32,7 +35,7 @@ if (entryAsset) {
   injectTag.push(`<script type="module" src="/assets/${entryAsset}"></script>`);
 }
 
-const htmlWithAssets = template.replace("</body>", `${injectTag.join("\n")}\n</body>`);
+const htmlWithAssets = templateWithoutGeneratedAssets.replace("</body>", `${injectTag.join("\n")}\n</body>`);
 await mkdir(publicDir, { recursive: true });
 await mkdir(publicAssetsDir, { recursive: true });
 await rm(publicAssetsDir, { recursive: true, force: true });
