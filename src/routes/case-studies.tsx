@@ -13,12 +13,12 @@ export const Route = createFileRoute("/case-studies")({
       {
         name: "description",
         content:
-          "Real deployments of SYNTROXI AI Employees in logistics, healthcare and financial services, with measured outcomes.",
+          "Measured outcomes from pilot deployments of SYNTROXI AI Employees in logistics, healthcare and financial services.",
       },
       { property: "og:title", content: "Case Studies — SYNTROXI" },
       {
         property: "og:description",
-        content: "Measured outcomes from live AI workforce deployments.",
+        content: "Measured outcomes from pilot AI workforce deployments.",
       },
       { property: "og:image", content: "https://syntroxi.com/og-image.png" },
       { property: "og:url", content: "https://syntroxi.com/case-studies" },
@@ -26,7 +26,7 @@ export const Route = createFileRoute("/case-studies")({
       { name: "twitter:title", content: "Case Studies — SYNTROXI" },
       {
         name: "twitter:description",
-        content: "Measured outcomes from live AI workforce deployments.",
+        content: "Measured outcomes from pilot AI workforce deployments.",
       },
       { name: "twitter:image", content: "https://syntroxi.com/og-image.png" },
     ],

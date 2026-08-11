@@ -59,7 +59,7 @@ function Resources() {
                   {p.excerpt}
                 </p>
                 <span className="mt-7 inline-flex items-center gap-1.5 text-sm font-medium text-electric">
-                  Read article{" "}
+                  Insight preview
                   <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                 </span>
               </article>

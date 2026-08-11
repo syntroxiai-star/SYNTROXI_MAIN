@@ -15,17 +15,20 @@ Allow: /
 Disallow: /auth/
 Disallow: /checkout/
 Disallow: /dashboard/
+Disallow: /api/
 
 User-agent: facebookexternalhit
 Allow: /
 Disallow: /auth/
 Disallow: /checkout/
 Disallow: /dashboard/
+Disallow: /api/
 
 User-agent: *
 Allow: /
 Disallow: /auth/
 Disallow: /checkout/
 Disallow: /dashboard/
+Disallow: /api/
 
 Sitemap: https://syntroxi.com/sitemap.xml
