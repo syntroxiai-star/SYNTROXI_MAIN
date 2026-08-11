@@ -2,5 +2,5 @@
   "version": 2,
   "buildCommand": "npm run build",
   "outputDirectory": "dist/client",
-  "rewrites": [{ "source": "/(.*)", "destination": "/api" }]
+  "routes": [{ "src": "/(.*)", "dest": "/api" }]
 }

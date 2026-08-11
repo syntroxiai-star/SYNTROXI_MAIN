@@ -101,3 +101,7 @@ export default async function handler(req, res) {
   const response = await serverHandler.fetch(request);
   await writeResponse(res, response);
 }
+
+export const config = {
+  runtime: 'nodejs',
+};
