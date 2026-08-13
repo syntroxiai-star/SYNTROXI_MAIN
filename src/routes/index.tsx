@@ -39,6 +39,8 @@ const DashboardPreview = lazy(() =>
   })),
 );
 
+import DeferOnView from '@/components/ui/defer-on-view';
+
 export const Route = createFileRoute("/")({
   component: Home,
   head: () => ({
@@ -164,17 +166,21 @@ function Home() {
           align="center"
           className="mb-14"
         />
-        <Suspense
-          fallback={<div className="min-h-[240px] rounded-3xl border border-border bg-card/70" />}
-        >
-          <TeamBuilderWizard />
-        </Suspense>
-        <div className="mt-16">
+        <DeferOnView placeholder={<div className="min-h-[240px] rounded-3xl border border-border bg-card/70" />}>
           <Suspense
-            fallback={<div className="min-h-[220px] rounded-3xl border border-border bg-card/70" />}
+            fallback={<div className="min-h-[240px] rounded-3xl border border-border bg-card/70" />}
           >
-            <WorkforceBuilder />
+            <TeamBuilderWizard />
           </Suspense>
+        </DeferOnView>
+        <div className="mt-16">
+          <DeferOnView placeholder={<div className="min-h-[220px] rounded-3xl border border-border bg-card/70" />}>
+            <Suspense
+              fallback={<div className="min-h-[220px] rounded-3xl border border-border bg-card/70" />}
+            >
+              <WorkforceBuilder />
+            </Suspense>
+          </DeferOnView>
         </div>
       </Section>
 
@@ -196,11 +202,13 @@ function Home() {
           align="center"
           className="mb-14"
         />
-        <Suspense
-          fallback={<div className="min-h-[260px] rounded-3xl border border-border bg-card/70" />}
-        >
-          <RoiCalculator />
-        </Suspense>
+        <DeferOnView placeholder={<div className="min-h-[260px] rounded-3xl border border-border bg-card/70" />}>
+          <Suspense
+            fallback={<div className="min-h-[260px] rounded-3xl border border-border bg-card/70" />}
+          >
+            <RoiCalculator />
+          </Suspense>
+        </DeferOnView>
       </Section>
 
       <Section>
@@ -211,11 +219,13 @@ function Home() {
           align="center"
           className="mb-14"
         />
-        <Suspense
-          fallback={<div className="min-h-[320px] rounded-3xl border border-border bg-card/70" />}
-        >
-          <DashboardPreview />
-        </Suspense>
+        <DeferOnView placeholder={<div className="min-h-[320px] rounded-3xl border border-border bg-card/70" />}>
+          <Suspense
+            fallback={<div className="min-h-[320px] rounded-3xl border border-border bg-card/70" />}
+          >
+            <DashboardPreview />
+          </Suspense>
+        </DeferOnView>
       </Section>
 
       <Section className="bg-secondary/40">

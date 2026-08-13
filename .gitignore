@@ -32,3 +32,6 @@ dist-ssr
 *.sw?
 .vercel
 .env*
+# Build artifacts and generated assets
+/assets
+/public/assets

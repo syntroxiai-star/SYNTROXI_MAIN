@@ -31,20 +31,27 @@ export const Route = createFileRoute("/ai-employees/$slug")({
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "Product",
+          "@type": "SoftwareApplication",
           name: loaderData?.name ?? "AI Employee",
           description: loaderData?.summary ?? "",
-          category: "AI Employee",
-          brand: {
-            "@type": "Brand",
+          applicationCategory: "BusinessApplication",
+          operatingSystem: "Web",
+          author: {
+            "@type": "Organization",
             name: "SYNTROXI",
           },
-          offers: {
-            "@type": "Offer",
-            priceCurrency: "USD",
-            price: "0",
-            availability: "https://schema.org/InStock",
-          },
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://syntroxi.com/" },
+            { "@type": "ListItem", position: 2, name: "AI Employees", item: "https://syntroxi.com/ai-employees" },
+            { "@type": "ListItem", position: 3, name: loaderData?.name ?? "AI Employee", item: `https://syntroxi.com/ai-employees/${params.slug}` },
+          ],
         }),
       },
     ],

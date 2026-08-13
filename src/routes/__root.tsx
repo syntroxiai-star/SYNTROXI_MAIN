@@ -125,7 +125,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "icon", href: "/favicon.png", type: "image/png" },
       { rel: "canonical", href: "https://syntroxi.com/" },
-      { rel: "preload", href: "/logo.svg", as: "image" },
     ],
     scripts: [
       {
